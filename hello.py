@@ -9,10 +9,10 @@ app = Flask(__name__)
 @app.route('/save',methods=['GET','POST'])
 def databaseupdate():
 	#user = {'ip': 'str(request.form)'}
-#	f=open("data.txt",w)
-#	f.write(str(user['ip']))
-#	f.close()
-	return request.data
+	f=open("data.txt",w)
+	f.write(str(request.data)
+	f.close()
+	return "IP STORED"
 @app.route('/show',methods=['GET'])
 def ipdisplay():
 	f=open('data.txt',r)
