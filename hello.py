@@ -6,11 +6,18 @@ import os
 app = Flask(__name__)
 #app.config.from_pyfile('config.py')
 
-@app.route('/',methods=['GET','POST'])
-def hello():
+@app.route('/save',methods=['GET','POST'])
+def databaseupdate():
 	user = {'ip': 'str(request.form)'}
-	return render_template('base.html',
-                           title='Home',
-                           user=user)	
+	f=open("data.txt",w)
+	f.write(str(user['ip']))
+	f.close()
+	#return render_template('base.html,title='Home',user=user)
+@app.route('/show',methods=['POST'])
+def ipdisplay():
+	f=open('data.txt',r)
+	ip=f.read()
+	f.close()
+	return ip
 if __name__=="__main__":
         app.run(host = '0.0.0.0')
