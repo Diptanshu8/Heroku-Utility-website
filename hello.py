@@ -8,11 +8,11 @@ app = Flask(__name__)
 
 @app.route('/save',methods=['GET','POST'])
 def databaseupdate():
-	user = {'ip': 'str(request.form)'}
-	f=open("data.txt",w)
-	f.write(str(user['ip']))
-	f.close()
-	#return render_template('base.html,title='Home',user=user)
+	#user = {'ip': 'str(request.form)'}
+#	f=open("data.txt",w)
+#	f.write(str(user['ip']))
+#	f.close()
+	return request.data
 @app.route('/show',methods=['GET'])
 def ipdisplay():
 	f=open('data.txt',r)
