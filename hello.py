@@ -13,7 +13,7 @@ def databaseupdate():
 	f.write(str(user['ip']))
 	f.close()
 	#return render_template('base.html,title='Home',user=user)
-@app.route('/show',methods=['POST'])
+@app.route('/show',methods=['GET'])
 def ipdisplay():
 	f=open('data.txt',r)
 	ip=f.read()
