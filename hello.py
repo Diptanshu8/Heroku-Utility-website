@@ -18,6 +18,6 @@ def ipdisplay():
 	f=open('ip.txt','r')
 	ip=f.read()
 	f.close()
-#	return ip
+	return ip
 if __name__=="__main__":
         app.run(host = '0.0.0.0')
