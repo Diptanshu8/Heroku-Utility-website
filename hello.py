@@ -12,12 +12,12 @@ def databaseupdate():
 	f=open("ip.txt",'w')
 	f.write(str(request.data))
 	f.close()
-	return request.data
+#	return request.data
 @app.route('/show',methods=['GET'])
 def ipdisplay():
 	f=open('ip.txt','r')
 	ip=f.read()
 	f.close()
-	return ip
+#	return ip
 if __name__=="__main__":
         app.run(host = '0.0.0.0')
