@@ -20,5 +20,15 @@ def ipdisplay():
 	f.close()
 	return ip
 
+@app.route('/temp',methods=['GET'])
+def temp():
+	f=open('ip.txt','r')
+        ip=f.read()
+        f.close()
+	user={"ip":ip}
+	date=ip.split("IST")
+	user["date"]=date
+	return render_template('base.html',user=user)
+
 if __name__=="__main__":
         app.run(host = '0.0.0.0')
