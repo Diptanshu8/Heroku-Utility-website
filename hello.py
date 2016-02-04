@@ -20,7 +20,9 @@ def ipdisplay():
 	ip=f.read()
 	f.close()
 	return ip
-
+@app.route('/pwd')
+def tp():
+	return os.getcwd()
 @app.route('/tt',methods=['GET'])
 def temp():
 	return render_template('base.html')
