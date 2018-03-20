@@ -35,7 +35,9 @@ def word_of_the_day_to_server():
         w,m,c = word.find_word_of_the_day()
     except Exception as e:
         return e
-    return render_template('word.html',word = w, citations=c , meaning = m)
+    bg_images = [img for img in os.listdir(os.path.join(os.getcwd(),'static')) if "word_of_day" in img]
+    print bg_images
+    return render_template('word.html', bg_image = img,word = w, citations = c , meaning = m, citation_count = len(c))
 
 if __name__=="__main__":
         app.debug=True
