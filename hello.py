@@ -1,4 +1,3 @@
-#links is a file to store the links bhai wants to share with me 
 from flask import Flask
 from flask import request
 from flask import render_template
@@ -32,7 +31,12 @@ def timetable_display():
 #function to show the word of the day, its meaning and citations.
 @app.route('/word', methods=['GET'])
 def word_of_the_day_to_server():
-    return word.find_word_of_the_day()
+    try:
+        w,m,c = word.find_word_of_the_day()
+    except Exception as e:
+        return e
+    return render_template('word.html',word = w, citations=c , meaning = m)
 
 if __name__=="__main__":
+        app.debug=True
         app.run(host = '0.0.0.0')
