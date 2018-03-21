@@ -3,6 +3,7 @@ from flask import request
 from flask import render_template
 import os
 import sys
+import random
 import word_of_the_day.word as word
 
 app = Flask(__name__)
@@ -35,9 +36,9 @@ def word_of_the_day_to_server():
         w,m,c = word.find_word_of_the_day()
     except Exception as e:
         return e
-    bg_images = [img for img in os.listdir(os.path.join(os.getcwd(),'static')) if "word_of_day" in img]
-    print bg_images
-    return render_template('word.html', bg_image = img,word = w, citations = c , meaning = m, citation_count = len(c))
+    selected_img = random.choice([img for img in os.listdir(os.path.join(os.getcwd(),'static')) if "word_of_day" in img])
+    img_path = "../static/"+selected_img
+    return render_template('word.html', bg_image = img_path ,word = w, citations = c , meaning = m, citation_count = len(c))
 
 if __name__=="__main__":
         app.debug=True
