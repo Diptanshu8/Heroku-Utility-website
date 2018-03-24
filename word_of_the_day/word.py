@@ -16,9 +16,10 @@ def find_word_of_the_day():
         meaning = k.text
 
     for k in soup.find_all(class_="citation-context"):
-        citations = [item for i,item in enumerate(map(str,k.text.split("\n"))) if item != "" and i%2!=0] 
-
+        c = [item.encode('utf-8') for item in k.text.split("\n")]
+        citations = [item for i,item in enumerate(c) if item != "" and i%2!=0] 
     #output = "The word of the day:\n{}\n\nMeaning:\n{}\n\nCitations:\n{}".format(word.upper(),meaning,"\n".join(citations))
+    print citations
     
     return (word.upper(),meaning,citations)
 
