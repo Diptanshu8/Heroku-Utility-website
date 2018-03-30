@@ -5,6 +5,7 @@ import os
 import sys
 import random
 import word_of_the_day.word as word
+import reddit_image_of_the_day.image_downloader as image_downloader
 
 app = Flask(__name__)
 
@@ -39,6 +40,16 @@ def word_of_the_day_to_server():
     selected_img = random.choice([img for img in os.listdir(os.path.join(os.getcwd(),'static')) if "word_of_day" in img])
     img_path = "../static/"+selected_img
     return render_template('word.html', bg_image = img_path ,word = w, citations = c , meaning = m, citation_count = len(c))
+
+#function to show the reddit image of the day.
+@app.route('/iod', methods=['GET'])
+def image_of_the_day_viewer():
+    args = {'reddit':True}
+    result, img_name = image_downloader.download(args)
+    if not result:
+        return "Some error in downloading the image from reddit."
+    img_path = os.path.join('static',img_name)
+    return render_template('image_of_the_day_reddit.html', bg_image = img_path )
 
 if __name__=="__main__":
         app.debug=True
